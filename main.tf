@@ -52,3 +52,11 @@ module "my-cluster" {
     }
   ]
 }
+
+terraform {
+  backend "s3" {
+    bucket = "bmc-practice-terraform-devops"
+    key    = "harel/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
