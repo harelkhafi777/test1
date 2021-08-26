@@ -41,13 +41,13 @@ provider "kubernetes" {
 module "my-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "harel-cluster"
-  cluster_version = "1.17"
-  subnets         = ["subnet-abcde012", "subnet-bcde012a", "subnet-fghi345a"]
-  vpc_id          = "vpc-1234556abcdef"
+  cluster_version = "1.21"
+  subnets         = module.vpc.private_subnets
+  vpc_id          = module.vpc.vpc_id
 
   worker_groups = [
     {
-      instance_type = "m4.large"
+      instance_type = "t2.micro"
       asg_max_size  = 5
     }
   ]
